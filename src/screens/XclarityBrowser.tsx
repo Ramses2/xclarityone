@@ -1,5 +1,5 @@
 import React, { createRef, useState,useEffect } from 'react';
-import {View, StyleSheet, NativeSyntheticEvent,ActivityIndicator} from 'react-native';
+import {View, StyleSheet, NativeSyntheticEvent,ActivityIndicator,Image} from 'react-native';
 import {WebView, WebViewNavigation} from 'react-native-webview';
 import { WebViewMessage } from 'react-native-webview/lib/WebViewTypes';
 import DeviceInfo from 'react-native-device-info';
@@ -11,6 +11,9 @@ import messaging from "@react-native-firebase/messaging";
 import {fetch} from 'react-native-ssl-pinning';
 import { Card } from '@rneui/themed';
 import LinearGradient from 'react-native-linear-gradient';
+import DefaultImage from '../assets/events-critical.png';
+
+const DEFAULT_IMAGE = Image.resolveAssetSource(DefaultImage).uri;
 
 
 export default function XclarityBrowser() {
@@ -113,20 +116,20 @@ const createChannel=(channelId)=> {
 const showNotification=(channelId,options)=> {
   PushNotification.localNotification({
     channelId: channelId, // (required) channelId, if the channel doesn't exist, notification will not trigger.
-    largeIconUrl: "https://cdn4.iconfinder.com/data/icons/logos-brands-5/24/react-128.png", // (optional) default: undefined
+    largeIconUrl: DEFAULT_IMAGE, // (optional) default: undefined
     smallIcon: "ic_notification", // (optional) default: "ic_notification" with fallback for "ic_launcher". Use "" for default small icon.
     bigText: options.bigText, // (optional) default: "message" prop
     subText: options.subText, // (optional) default: none
     bigPictureUrl: options.bigImage, // (optional) default: undefined
     bigLargeIcon: "ic_launcher", // (optional) default: undefined
-    bigLargeIconUrl: "https://cdn0.iconfinder.com/data/icons/logos-brands-in-colors/128/react_color-512.png", // (optional) default: undefined
+    bigLargeIconUrl: DEFAULT_IMAGE, // (optional) default: undefined
     color: options.color, // (optional) default: system default
     vibrate: true, // (optional) default: true
     vibration: 300, // vibration length in milliseconds, ignored if vibrate=false, default: 1000
     priority: "high", // (optional) set notification priority, default: high
-    actions: ["Reply"], // (Android only) See the doc for notification actions to know more
-    reply_placeholder_text: "Write your response...", // (required)
-    reply_button_text: "Reply", // (required)
+    //actions: ["Reply"], // (Android only) See the doc for notification actions to know more
+    //reply_placeholder_text: "Write your response...", // (required)
+    //reply_button_text: "Reply", // (required)
     title: options.title, // (optional)
     message: options.message, // (required)
   });
@@ -237,8 +240,8 @@ const hideSpinner=()=> {
 
   return (
     <LinearGradient colors={['#870000', '#190a05', '#ffffff']} style={styles.linearGradient}>
-    <Card containerStyle={styles.containerStyle} wrapperStyle={{}}>
-    <View style={styles.backgroundStyle}>
+    {/* <Card containerStyle={styles.containerStyle} wrapperStyle={{}}> */}
+    {/* <View style={styles.backgroundStyle}> */}
       
 
       <WebView
@@ -298,8 +301,8 @@ const hideSpinner=()=> {
         />
       )}
       
-    </View>
-    </Card>
+    {/* </View> */}
+    {/* </Card> */}
     </LinearGradient>
   );
 
@@ -339,8 +342,8 @@ const styles = StyleSheet.create({
   },
   linearGradient: {
     flex: 1,
-    paddingLeft: 15,
-    paddingRight: 15
+    paddingLeft: 0,
+    paddingRight: 0
   },
   
 });

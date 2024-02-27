@@ -34,9 +34,9 @@ export default function XcalrityPush() {
       vibrate: true, // (optional) default: true
       vibration: 300, // vibration length in milliseconds, ignored if vibrate=false, default: 1000
       priority: "high", // (optional) set notification priority, default: high
-      actions: ["Reply"], // (Android only) See the doc for notification actions to know more
-      reply_placeholder_text: "Write your response...", // (required)
-      reply_button_text: "Reply", // (required)
+      //actions: ["Reply"], // (Android only) See the doc for notification actions to know more
+      //reply_placeholder_text: "Write your response...", // (required)
+      //reply_button_text: "Reply", // (required)
       title: options.title, // (optional)
       message: options.message, // (required)
     });

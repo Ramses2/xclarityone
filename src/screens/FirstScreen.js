@@ -33,7 +33,7 @@ export default function FirstScreen() {
     
   <BottomTabs.Navigator 
   screenOptions={({navigation})=> ({
-    headerStyle:{backgroundColor:GlobalStyles.colors.primary500},
+    headerStyle:{height:0},
     headerTintColor:'white',
     tabBarStyle:{backgroundColor:GlobalStyles.colors.accent500,height:60,borderColor:'#fff'},
     tabBarActiveTintColor:GlobalStyles.colors.primary500
