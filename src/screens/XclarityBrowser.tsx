@@ -11,9 +11,15 @@ import messaging from "@react-native-firebase/messaging";
 import {fetch} from 'react-native-ssl-pinning';
 import { Card } from '@rneui/themed';
 import LinearGradient from 'react-native-linear-gradient';
-import DefaultImage from '../assets/events-critical.png';
+import Critical from '../assets/events-critical.png';
+import Informational from '../assets/events-informational.png';
+import Warning from '../assets/events-warning.png';
 
-const DEFAULT_IMAGE = Image.resolveAssetSource(DefaultImage).uri;
+const CRITICAL = Image.resolveAssetSource(Critical).uri;
+const WARNING = Image.resolveAssetSource(Warning).uri;
+const INFORMATIONAL = Image.resolveAssetSource(Informational).uri;
+
+
 
 
 export default function XclarityBrowser() {
@@ -114,15 +120,30 @@ const createChannel=(channelId)=> {
   );  
 }
 const showNotification=(channelId,options)=> {
+  console.log('OPTIOS:',options);
+  let Icon;
+  
+  switch (options.notifIcon) {
+    case 'INFORMATIONAL':
+      Icon=INFORMATIONAL;
+      break;
+    case 'WARNING':
+      Icon=WARNING;
+      break;
+    case 'CRITICAL':
+      Icon=CRITICAL;
+      break;
+    default:      
+  }  
   PushNotification.localNotification({
     channelId: channelId, // (required) channelId, if the channel doesn't exist, notification will not trigger.
-    largeIconUrl: DEFAULT_IMAGE, // (optional) default: undefined
+    largeIconUrl: Icon, // (optional) default: undefined
     smallIcon: "ic_notification", // (optional) default: "ic_notification" with fallback for "ic_launcher". Use "" for default small icon.
     bigText: options.bigText, // (optional) default: "message" prop
     subText: options.subText, // (optional) default: none
     bigPictureUrl: options.bigImage, // (optional) default: undefined
     bigLargeIcon: "ic_launcher", // (optional) default: undefined
-    bigLargeIconUrl: DEFAULT_IMAGE, // (optional) default: undefined
+    bigLargeIconUrl: Icon, // (optional) default: undefined
     color: options.color, // (optional) default: system default
     vibrate: true, // (optional) default: true
     vibration: 300, // vibration length in milliseconds, ignored if vibrate=false, default: 1000
@@ -223,7 +244,7 @@ useEffect(() => {
   const unsubscribe = messaging().onMessage(async remoteMsg => {
     const channelId = Math.random().toString(36).substring(7)
     createChannel(channelId)
-    showNotification(channelId, { bigImage: remoteMsg.notification.android.imageUrl, title: remoteMsg.notification.title, message: remoteMsg.notification.body, subText: remoteMsg.data.subtitle })
+    showNotification(channelId, { bigImage: remoteMsg.notification.android.imageUrl, title: remoteMsg.notification.title, message: remoteMsg.notification.body, subText: remoteMsg.data.subtitle, notifIcon: remoteMsg.data.customData })
     console.log('remoteMsg', remoteMsg)
   })
 

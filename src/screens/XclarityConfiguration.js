@@ -18,7 +18,7 @@ const XclarityConfiguration = ({navigation}) => {
     const [critical, setCritical] = useState(false);
 
     const [audit, setAudit] = useState(false);
-    const [other, setOther] = useState(false);
+    const [system, setSystem] = useState(false);
 
     const [update,setUpdate]=useState(true);
 
@@ -40,7 +40,7 @@ const XclarityConfiguration = ({navigation}) => {
           setWarning(false);
           setCritical(false);
           setAudit(false);
-          setOther(false);
+          setSystem(false);
           setSaved(true);
           setChecked(false);                   
           navigation.navigate('XClarity One');
@@ -91,7 +91,7 @@ const XclarityConfiguration = ({navigation}) => {
             if (severities.indexOf("warning") !== -1) { setWarning(true); console.log('warning:', warning); }
             if (severities.indexOf("critical") !== -1) { setCritical(true); console.log('critical:', critical); }
             if (classes.indexOf("audit") !== -1) { setAudit(true); console.log('audit:', audit); }
-            if (classes.indexOf("other") !== -1) { setOther(true); console.log('other:', other); }
+            if (classes.indexOf("system") !== -1) { setSystem(true); console.log('system:', system); }
             checkPushState();
             setUpdate(false);
             
@@ -125,13 +125,13 @@ const XclarityConfiguration = ({navigation}) => {
       AsyncStorage.getItem('appToken', (error, result) => {
         if (typeValue !== true && result !== null) {
           if(["informational","warning","critical"].includes(type)) setSeverities([...severities, type]);
-          if(["audit","other"].includes(type)) setClasses([...classes, type])            
+          if(["audit","system"].includes(type)) setClasses([...classes, type])            
         } else {
           if(["informational","warning","critical"].includes(type)) {
             const index = severities.indexOf(type)
             severities.splice(index, 1)
           }
-          if(["audit","other"].includes(type)) {
+          if(["audit","system"].includes(type)) {
             const index = classes.indexOf(type)
             classes.splice(index, 1)
           }
@@ -269,9 +269,9 @@ return (
     />
     <CheckBox
       left
-      title="other"
-      checked={other}
-      onPress={() => {toggleOverlay();setSaved(false);setOther(!other);createFilter("other",other);}}
+      title="system"
+      checked={system}
+      onPress={() => {toggleOverlay();setSaved(false);setSystem(!system);createFilter("system",system);}}
       textStyle={{fontSize:20, color: '#870000'}}
       containerStyle={{backgroundColor:'#f3f3f3',borderRadius:10}}
       checkedColor='#870000'
