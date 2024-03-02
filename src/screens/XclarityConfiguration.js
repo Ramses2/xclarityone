@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react';
-import { StyleSheet, View, Text,Alert } from 'react-native';
+import { StyleSheet, View, Text,Alert,Image } from 'react-native';
 import { Button,CheckBox, Card,Overlay,Icon } from '@rneui/themed';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {fetch} from 'react-native-ssl-pinning';
@@ -227,31 +227,33 @@ return (
     <Card.Title style={{fontSize:25}}>Filter Configuration</Card.Title>
     <Text style={styles.filterTitle}> Event Severity Filter</Text>
     <CheckBox
+      checkedIcon={<Image source={require('../assets/events-informational.png')} style={{width:24, height:24}}/>}
+      //uncheckedIcon={<Image source={require('../assets/events-informational-disabled.png')} />}
       left
-      title="informational"
+      title="Informational"
       checked={informational}
       onPress={() => {toggleOverlay();setSaved(false);setInformational(!informational);createFilter("informational",informational);}}
-      textStyle={{fontSize:20, color: '#870000'}}
+      textStyle={informational?{color:'#2196f3',fontSize:20}:styles.uncheckedEvent}
       containerStyle={{backgroundColor:'#f3f3f3',borderRadius:10}}
-      checkedColor='#870000'
     />
     <CheckBox
+    checkedIcon={<Image source={require('../assets/events-warning.png')} style={{width:24, height:24}}/>}
       left
-      title="warning"
+      title="Warning"
       checked={warning}
       onPress={() => {toggleOverlay();setSaved(false);setWarning(!warning);createFilter("warning",warning);}}
-      textStyle={{fontSize:20, color: '#870000'}}
+      textStyle={warning?{color:'#ffca28',fontSize:20}:styles.uncheckedEvent}
       containerStyle={{backgroundColor:'#f3f3f3',borderRadius:10}}
-      checkedColor='#870000'
     />
     <CheckBox
+      checkedIcon={<Image source={require('../assets/events-critical.png')} style={{width:24, height:24}}/>}
       left
-      title="critical"
+      title="Critical"
       checked={critical}
       onPress={() => {toggleOverlay();setSaved(false);setCritical(!critical);createFilter("critical",critical);}}
-      textStyle={{fontSize:20, color: '#870000'}}
+      textStyle={critical?{color:'#f44336',fontSize:20}:styles.uncheckedEvent}
       containerStyle={{backgroundColor:'#f3f3f3',borderRadius:10}}
-      checkedColor='#870000'
+      //checkedColor='#870000'
     />
 
     <Text style={styles.filterTitle}> Event Class Filter</Text>
@@ -359,6 +361,11 @@ const styles=StyleSheet.create({
     textAlign: 'center',
     fontSize: 17,
   },
+  uncheckedEvent: {
+    color:'#d5dadd',
+    fontSize:20
+  }
+
 })
 
 
