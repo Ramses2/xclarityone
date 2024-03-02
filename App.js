@@ -8,8 +8,9 @@ import FirstScreen from "./src/screens/FirstScreen";
 import XcalrityPush from "./src/screens/XclarityPush";
 import { GlobalStyles } from './constants/style';
 import IconButton from './components/UI/IconButton';
-import SplashScreen from "./components/SplahScreen";
+//import SplashScreen from "./components/SplahScreen";
 //import TestAxios from "./src/screens/TestAxios";
+import SplashScreen from 'react-native-splash-screen';
 
 const Stack=createNativeStackNavigator();
 const BottomTabs=createBottomTabNavigator();
@@ -18,13 +19,14 @@ const App=()=> {
   const [isAppReady, setIsAppReady] = useState(false);
 
   useEffect(() => {
+    SplashScreen.hide();
     setIsAppReady(true);
   }, []);
   return (
     
     <>
       {/* <XcalrityPush /> */}
-      <SplashScreen isAppReady={isAppReady}>
+      {/* <SplashScreen isAppReady={isAppReady}> */}
       <StatusBar
         animated={true}
         backgroundColor="black"
@@ -41,7 +43,7 @@ const App=()=> {
           <Stack.Screen name="Lenovo XClarity One" component={XclarityBrowser} options={{presentation:'modal'}}/>
         </Stack.Navigator>
       </NavigationContainer>
-      </SplashScreen>
+      {/* </SplashScreen> */}
       </>
   )
 }
