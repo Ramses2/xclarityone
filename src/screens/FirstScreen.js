@@ -1,4 +1,4 @@
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet,Image} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import XclarityBrowser from "./XclarityBrowser";
 import XclarityConfiguration from './XclarityConfiguration';
@@ -42,31 +42,46 @@ export default function FirstScreen() {
       tile: 'XclarityBrowser',
       tabBarLabelStyle:{fontSize:12},
       tabBarLebel:'Recent',
-      tabBarIcon:({color, size})=><Ionicons name="cloud" size={40} color={color}/>,
-      
-    
-    }}/>
+      tabBarIcon:({ tintColor }) => (
+        <Image
+          source={require('../assets/icons/xc1b.png')}
+          style={{width: 50, height: 30, tintColor: tintColor}}
+        />
+      )
+    }}/>      
     <BottomTabs.Screen name="Configuration" component={XclarityConfiguration} options={{
       tile: 'Configuration',
       tabBarLabelStyle:{fontSize:12},
       tabBarLebel:'Configuration',
-      tabBarIcon:({color, size})=><Ionicons name="cog" size={40} color={color}/>
-    
-    }}/>
+      tabBarIcon:({ tintColor }) => (
+        <Image
+          source={require('../assets/icons/configb.png')}
+          style={{width: 50, height: 30, tintColor: tintColor}}
+        />
+      )
+    }}/>    
     <BottomTabs.Screen name="USB Connection" component={USBConnection} options={{
       tile: 'USBConnection',
       tabBarLabelStyle:{fontSize:12},
       tabBarLebel:'USBConnection',
-      tabBarIcon:({color, size})=><Ionicons name="bluetooth" size={40} color={color}/>
-    
-    }}/>
+      tabBarIcon:({ tintColor }) => (
+        <Image
+          source={require('../assets/icons/usbb.png')}
+          style={{width: 30, height: 30, tintColor: tintColor}}
+        />
+      )
+    }}/>    
     <BottomTabs.Screen name="ThinkShield" component={ThinkShield} options={{
       tile: 'ThinkShield',
       tabBarLabelStyle:{fontSize:12},
       tabBarLebel:'ThinkShield',
-      tabBarIcon:({color, size})=><Ionicons name="shield-half" size={40} color={color}/>
-    
-    }}/>
+      tabBarIcon:({ tintColor }) => (
+        <Image
+          source={require('../assets/icons/tsb.png')}
+          style={{width: 25, height: 30, tintColor: tintColor}}
+        />
+      )
+    }}/>    
   </BottomTabs.Navigator>
   
   )

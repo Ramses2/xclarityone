@@ -233,7 +233,7 @@ return (
       title="Informational"
       checked={informational}
       onPress={() => {toggleOverlay();setSaved(false);setInformational(!informational);createFilter("informational",informational);}}
-      textStyle={informational?{color:'#2196f3',fontSize:20}:styles.uncheckedEvent}
+      textStyle={informational?styles.checkedEvent:styles.uncheckedEvent}
       containerStyle={{backgroundColor:'#f3f3f3',borderRadius:10}}
     />
     <CheckBox
@@ -242,7 +242,7 @@ return (
       title="Warning"
       checked={warning}
       onPress={() => {toggleOverlay();setSaved(false);setWarning(!warning);createFilter("warning",warning);}}
-      textStyle={warning?{color:'#ffca28',fontSize:20}:styles.uncheckedEvent}
+      textStyle={warning?styles.checkedEvent:styles.uncheckedEvent}
       containerStyle={{backgroundColor:'#f3f3f3',borderRadius:10}}
     />
     <CheckBox
@@ -251,7 +251,7 @@ return (
       title="Critical"
       checked={critical}
       onPress={() => {toggleOverlay();setSaved(false);setCritical(!critical);createFilter("critical",critical);}}
-      textStyle={critical?{color:'#f44336',fontSize:20}:styles.uncheckedEvent}
+      textStyle={critical?styles.checkedEvent:styles.uncheckedEvent}
       containerStyle={{backgroundColor:'#f3f3f3',borderRadius:10}}
       //checkedColor='#870000'
     />
@@ -263,9 +263,9 @@ return (
       title="audit"
       checked={audit}
       onPress={() => {toggleOverlay();setSaved(false);setAudit(!audit);createFilter("audit",audit);}}
-      textStyle={{fontSize:20, color: '#870000'}}
+      textStyle={audit?styles.checkedEvent:styles.uncheckedEvent}
       containerStyle={{backgroundColor:'#f3f3f3',borderRadius:10}}
-      checkedColor='#870000'
+      checkedColor='#000000'
       
 
     />
@@ -274,9 +274,9 @@ return (
       title="system"
       checked={system}
       onPress={() => {toggleOverlay();setSaved(false);setSystem(!system);createFilter("system",system);}}
-      textStyle={{fontSize:20, color: '#870000'}}
+      textStyle={system?styles.checkedEvent:styles.uncheckedEvent}
       containerStyle={{backgroundColor:'#f3f3f3',borderRadius:10}}
-      checkedColor='#870000'
+      checkedColor='#000000'
       
     />
     
@@ -299,7 +299,7 @@ return (
     </View>
 
     <View style={styles.pushInfo}>
-      {checked?<Text style={{...styles.filterTitle, fontSize:15,color:'#870000', fontWeight:'bold'}}>Push notification ON</Text>:<Text style={{...styles.filterTitle, fontSize:15, color:'gray', fontWeight:'bold'}}>Push notification OFF</Text>}
+      {checked?<Text style={{...styles.filterTitle, fontSize:15,color:'#000000', fontWeight:'bold'}}>Push notification ON</Text>:<Text style={{...styles.filterTitle, fontSize:15, color:'gray', fontWeight:'bold'}}>Push notification OFF</Text>}
       
     </View>       
     <View style={styles.switchStyle}>
@@ -325,7 +325,7 @@ const styles=StyleSheet.create({
     marginTop:30
   },
   saveButton: {    
-    backgroundColor: '#8a1e16',
+    backgroundColor: 'lightgreen',
     borderRadius: 5
   },
   card:{
@@ -363,7 +363,13 @@ const styles=StyleSheet.create({
   },
   uncheckedEvent: {
     color:'#d5dadd',
-    fontSize:20
+    fontSize:20,
+    fontWeight:'100'
+  },
+  checkedEvent:{
+    color:'#000000',
+    fontSize:20,
+    fontWeight:'bold'
   }
 
 })

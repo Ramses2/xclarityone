@@ -11,9 +11,9 @@ import messaging from "@react-native-firebase/messaging";
 import {fetch} from 'react-native-ssl-pinning';
 import { Card } from '@rneui/themed';
 import LinearGradient from 'react-native-linear-gradient';
-import Critical from '../assets/events-critical.png';
-import Informational from '../assets/events-informational.png';
-import Warning from '../assets/events-warning.png';
+import Critical from '../assets/critical.png';
+import Informational from '../assets/informational.png';
+import Warning from '../assets/warning.png';
 
 const CRITICAL = Image.resolveAssetSource(Critical).uri;
 const WARNING = Image.resolveAssetSource(Warning).uri;
